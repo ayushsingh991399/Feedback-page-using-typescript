@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { string } from "zod";
 
 export interface Message extends Document {
   content: string;
@@ -12,7 +13,7 @@ export interface User extends Document {
   username: string;
   email: string;
   password: string;
-  veridyCode: string;
+  verifyCode: string;
   isVerified: boolean;
   verifyCodeExpiry: Date;
   isAcceptingMessage: boolean;
@@ -33,7 +34,7 @@ const UserSchema: Schema<User> = new Schema({
     match: [/\S+@\S+\.\S+/, "Please use a valid email address"],
   },
   password: { type: String, required: [true, "Password is required"] },
-  veridyCode: { type: String, required: [true, "Veridy code is required"] },
+  verifyCode: { type: String, required: [true, "Verify code is required"] },
   isVerified: { type: Boolean, default: false },
   verifyCodeExpiry: { type: Date, required: [true, "Verify code expiration"] },
   isAcceptingMessage: { type: Boolean, default: true },
